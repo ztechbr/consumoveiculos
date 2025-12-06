@@ -20,12 +20,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calculadora Flex Consumo\n Canivete Suíço"
+            android:text="Calculadora Consumo\nFlex - Canivete Suíço"
             android:textSize="24sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:background="@color/title_background"
-            android:textColor="@color/title_text_color"
+            android:background="@drawable/bg_black_translucido"
+            android:textColor="@color/title_text_color_dark"
             android:padding="16dp"
             android:layout_marginBottom="32dp"/>
 

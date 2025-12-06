@@ -2,6 +2,7 @@ package io.ztech.apppostogasolina
 
 import android.content.Intent
 import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -11,6 +12,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
+
+    // Audio
+    private lateinit var mp: MediaPlayer
 
     // Componentes da Interface
     private lateinit var edtConsumo1: EditText
@@ -22,22 +26,21 @@ class MainActivity : AppCompatActivity() {
     private lateinit var txtResumo2: TextView
     private lateinit var btnBuscar2: Button
 
-    // Variável para saber qual botão foi clicado (1 ou 2)
+    // Variável para saber qual botão foi clicado
     private var campoParaPreencher: Int = 0
 
-    // --- VARIÁVEIS DE MEMÓRIA ---
+    // Variáveis de memória
     private var ultimoTipo: String? = null
     private var ultimoMotor: String? = null
     private var ultimoUso: String? = null
     private var ultimoCombustivel: String? = null
 
-    // Configuração para receber o resultado da tela de lista
+    // Configuração da tela de lista
     private val getConsumo = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
             val data = result.data
 
             val consumoRetornado = data?.getDoubleExtra("CONSUMO_ESCOLHIDO", 0.0) ?: 0.0
-
             val resumoTexto = data?.getStringExtra("RESUMO_ESCOLHA") ?: getString(R.string.text_personalizado)
 
             ultimoTipo = data?.getStringExtra("EXTRA_TIPO")
@@ -57,8 +60,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Inicializar áudio
+        mp = MediaPlayer.create(this, R.raw.caixaregistradora)
 
         // Vinculando IDs
         edtConsumo1 = findViewById(R.id.edtConsumo1)
@@ -66,14 +73,12 @@ class MainActivity : AppCompatActivity() {
         edtPreco1 = findViewById(R.id.edtPreco1)
         edtPreco2 = findViewById(R.id.edtPreco2)
         txtResultado = findViewById(R.id.txtResultado)
-
         txtResumo1 = findViewById(R.id.txtResumo1)
         txtResumo2 = findViewById(R.id.txtResumo2)
 
         val btnBuscar1 = findViewById<Button>(R.id.btnBuscar1)
         btnBuscar2 = findViewById<Button>(R.id.btnBuscar2)
         val btnCalcular = findViewById<Button>(R.id.btnCalcular)
-
         val btnLimpar = findViewById<Button>(R.id.btnLimpar)
 
         btnBuscar2.isEnabled = false
@@ -89,6 +94,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnCalcular.setOnClickListener {
+            mp.start()      // toca o som
             calcularMelhorOpcao()
         }
 
@@ -152,29 +158,29 @@ class MainActivity : AppCompatActivity() {
         val custoKm1 = preco1 / consumo1
         val custoKm2 = preco2 / consumo2
 
-//        val resumo1 = txtResumo1.text.toString().substringBefore(" - ")
-//        val resumo2 = txtResumo2.text.toString().substringBefore(" - ")
-
         val resumo1 = txtResumo1.text.toString().replace(" ", "")
         val resumo2 = txtResumo2.text.toString().replace(" ", "")
 
         if (custoKm1 < custoKm2) {
             val economia = ((1 - (custoKm1 / custoKm2)) * 100).toInt()
-            // Concatenando a string manualmente para formar a frase completa
             txtResultado.text = "A opção 1 $resumo1 é $economia% mais econômico que o $resumo2."
             txtResultado.setTextColor(getColor(android.R.color.holo_green_dark))
 
         } else if (custoKm2 < custoKm1) {
             val economia = ((1 - (custoKm2 / custoKm1)) * 100).toInt()
-            // Concatenando a string manualmente para formar a frase completa
             txtResultado.text = "A opção 2 $resumo2 é $economia% mais econômico que o $resumo1."
             txtResultado.setTextColor(getColor(android.R.color.holo_orange_dark))
 
         } else {
-            // Para o caso de empate, podemos continuar usando o recurso de string, pois não há argumentos.
             txtResultado.text = getString(R.string.result_comb_empate)
             txtResultado.setTextColor(Color.BLUE)
         }
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        if (this::mp.isInitialized) {
+            mp.release()
+        }
     }
 }

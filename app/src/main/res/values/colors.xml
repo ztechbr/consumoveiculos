@@ -3,6 +3,7 @@
     <color name="primary_green">#2E7D32</color>
     <color name="primary_green_light">#4CAF50</color>
     <color name="primary_green_dark">#1B5E20</color>
+    <color name="primary_green_translucid">#B21B5E20</color>
 
     <color name="secondary_orange">#763E04</color>
 
@@ -11,4 +12,5 @@
     <color name="background_light">#F5F5F5</color>
     <color name="title_background">#CC000000</color>
     <color name="title_text_color">#FFFFFF</color>
+    <color name="title_text_color_dark">#000000</color>
 </resources>
