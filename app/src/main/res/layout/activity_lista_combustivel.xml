@@ -13,60 +13,76 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
+        android:textColor="@android:color/black"
+        android:background="@drawable/bg_card_translucido"
+        android:padding="8dp"
         android:layout_marginBottom="24dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tipo de Veículo:"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
+
     <Spinner
         android:id="@+id/spTipoVeiculo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_spinner"
         android:minHeight="48dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Motorização:"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
+
     <Spinner
         android:id="@+id/spMotorizacao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_spinner"
         android:minHeight="48dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Combustível:"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
+
     <Spinner
         android:id="@+id/spCombustivel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_spinner"
         android:minHeight="48dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Uso Principal:"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
+
     <Spinner
         android:id="@+id/spUso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
+        android:background="@drawable/bg_spinner"
         android:minHeight="48dp"/>
 
     <Button
         android:id="@+id/btnConfirmar"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
         android:text="Confirmar Seleção"
         android:backgroundTint="@color/primary_green"/>
 
