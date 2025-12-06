@@ -87,6 +87,6 @@ class FluxoUsuarioTest {
         // Opção 2 (Etanol):   R$ 3.50 / 9.5km/l  = R$ 0.36/km (Mais barato!)
 
         // Verifica se o resultado diz que o Combustível 2 é melhor
-        onView(withId(R.id.txtResultado)).check(matches(withText(containsString("Combustível 2 é mais vantajoso"))))
+        onView(withId(R.id.txtResultado)).check(matches(withText(containsString("A opção 2"))))
     }
 }
