@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#FAFAFA"
+    android:padding="16dp"
+    tools:ignore="HardcodedText,Autofill,LabelFor,VisualLintButtonSize,VisualLintTextFieldSize">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="24dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Calculadora Flex\nConsumo - Canivete Suíço"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColor="@color/design_default_color_primary"
+            android:layout_marginBottom="32dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Consumo Combustível 1 (km/l):"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/txtResumo1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nenhuma seleção"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+
+            <EditText
+                android:id="@+id/edtConsumo1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Ex: 9.5"
+                android:inputType="numberDecimal"
+                android:drawableStart="@drawable/ic_gas"
+                android:drawablePadding="12dp"
+                android:background="@android:drawable/edit_text"
+                android:minHeight="48dp"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btnBuscar1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buscar"
+                android:minHeight="48dp"
+                android:contentDescription="Buscar Combustível 1"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Consumo Combustível 2 (km/l):"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/txtResumo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nenhuma seleção"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+
+            <EditText
+                android:id="@+id/edtConsumo2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Ex: 13.0"
+                android:inputType="numberDecimal"
+                android:drawableStart="@drawable/ic_gas"
+                android:drawablePadding="12dp"
+                android:background="@android:drawable/edit_text"
+                android:minHeight="48dp"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btnBuscar2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Buscar"
+                android:minHeight="48dp"
+                android:contentDescription="Buscar Combustível 2"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginBottom="24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valor Litro Combustível 1 (R$):"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/edtPreco1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ex: 3.49"
+            android:inputType="numberDecimal"
+            android:drawableStart="@drawable/ic_money"
+            android:drawablePadding="12dp"
+            android:layout_marginBottom="16dp"
+            android:minHeight="48dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valor Litro Combustível 2 (R$):"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/edtPreco2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ex: 5.89"
+            android:inputType="numberDecimal"
+            android:drawableStart="@drawable/ic_money"
+            android:drawablePadding="12dp"
+            android:layout_marginBottom="32dp"
+            android:minHeight="48dp"/>
+
+        <Button
+            android:id="@+id/btnCalcular"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="O Mais Barato"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:elevation="4dp"
+            android:backgroundTint="@color/design_default_color_primary"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:contentPadding="16dp">
+
+            <TextView
+                android:id="@+id/txtResultado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Resultado aparecerá aqui"
+                android:textColor="#333333"/>
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btnLimpar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Limpar / Novo Cálculo"
+            android:backgroundTint="#EEEEEE"
+            android:textColor="#555555"
+            android:elevation="0dp"/>
+
+    </LinearLayout>
+
+</ScrollView>
