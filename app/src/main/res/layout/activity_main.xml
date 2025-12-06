@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="#FAFAFA"
+    android:background="@drawable/fundo"
     android:padding="16dp"
     tools:ignore="HardcodedText,Autofill,LabelFor,VisualLintButtonSize,VisualLintTextFieldSize">
 
@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@drawable/bg_card_translucido"
         android:paddingBottom="24dp">
 
         <TextView
@@ -22,13 +24,16 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:textColor="@color/design_default_color_primary"
+            android:background="@color/title_background"
+            android:textColor="@color/title_text_color"
+            android:padding="16dp"
             android:layout_marginBottom="32dp"/>
 
+        <!-- SEÇÃO CONSUMO 1 CENTRALIZADA -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Consumo Combustível 1 (km/l):"
+            android:text="Consumo Opção 1 (km/l):"
             android:textStyle="bold"
             android:layout_marginBottom="4dp"/>
 
@@ -42,16 +47,16 @@
             android:layout_marginBottom="8dp"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_marginBottom="24dp">
 
             <EditText
                 android:id="@+id/edtConsumo1"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:hint="Ex: 9.5"
                 android:inputType="numberDecimal"
                 android:drawableStart="@drawable/ic_gas"
@@ -69,10 +74,11 @@
                 android:contentDescription="Buscar Combustível 1"/>
         </LinearLayout>
 
+        <!-- SEÇÃO CONSUMO 2 CENTRALIZADA -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Consumo Combustível 2 (km/l):"
+            android:text="Consumo Opção 2 (km/l):"
             android:textStyle="bold"
             android:layout_marginBottom="4dp"/>
 
@@ -86,16 +92,16 @@
             android:layout_marginBottom="8dp"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_marginBottom="24dp">
 
             <EditText
                 android:id="@+id/edtConsumo2"
-                android:layout_width="0dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:hint="Ex: 13.0"
                 android:inputType="numberDecimal"
                 android:drawableStart="@drawable/ic_gas"
@@ -119,6 +125,7 @@
             android:background="#E0E0E0"
             android:layout_marginBottom="24dp"/>
 
+        <!-- SEÇÃO DE PREÇOS CENTRALIZADA -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -128,9 +135,9 @@
 
         <EditText
             android:id="@+id/edtPreco1"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:hint="Ex: 3.49"
+            android:hint="Ex: 6.50"
             android:inputType="numberDecimal"
             android:drawableStart="@drawable/ic_money"
             android:drawablePadding="12dp"
@@ -146,24 +153,25 @@
 
         <EditText
             android:id="@+id/edtPreco2"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:hint="Ex: 5.89"
             android:inputType="numberDecimal"
             android:drawableStart="@drawable/ic_money"
             android:drawablePadding="12dp"
-            android:layout_marginBottom="32dp"
             android:minHeight="48dp"/>
 
+        <!-- BOTÕES E RESULTADO -->
         <Button
             android:id="@+id/btnCalcular"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="O Mais Barato"
+            android:text="Opção mais Econômica"
             android:textSize="18sp"
             android:textStyle="bold"
             android:elevation="4dp"
-            android:backgroundTint="@color/design_default_color_primary"/>
+            android:backgroundTint="@color/primary_green"
+            android:layout_marginTop="32dp"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -191,8 +199,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Limpar / Novo Cálculo"
-            android:backgroundTint="#EEEEEE"
-            android:textColor="#555555"
+            android:backgroundTint="@color/primary_green"
             android:elevation="0dp"/>
 
     </LinearLayout>

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/fundo"
     android:padding="24dp">
 
     <TextView
@@ -64,9 +65,9 @@
 
     <Button
         android:id="@+id/btnConfirmar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:text="Confirmar Seleção"
-        android:backgroundTint="@color/design_default_color_primary"/>
+        android:backgroundTint="@color/primary_green"/>
 
 </LinearLayout>

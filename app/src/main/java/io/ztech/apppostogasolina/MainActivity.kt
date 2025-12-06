@@ -38,10 +38,8 @@ class MainActivity : AppCompatActivity() {
 
             val consumoRetornado = data?.getDoubleExtra("CONSUMO_ESCOLHIDO", 0.0) ?: 0.0
 
-            // ALTERAÇÃO 1: Usando string resource para o valor padrão
             val resumoTexto = data?.getStringExtra("RESUMO_ESCOLHA") ?: getString(R.string.text_personalizado)
 
-            // Recupera e salva configurações
             ultimoTipo = data?.getStringExtra("EXTRA_TIPO")
             ultimoMotor = data?.getStringExtra("EXTRA_MOTOR")
             ultimoUso = data?.getStringExtra("EXTRA_USO")
@@ -50,7 +48,6 @@ class MainActivity : AppCompatActivity() {
             if (campoParaPreencher == 1) {
                 edtConsumo1.setText(consumoRetornado.toString())
                 txtResumo1.text = resumoTexto
-                // Habilita o botão 2
                 btnBuscar2.isEnabled = true
             } else if (campoParaPreencher == 2) {
                 edtConsumo2.setText(consumoRetornado.toString())
@@ -74,13 +71,11 @@ class MainActivity : AppCompatActivity() {
         txtResumo2 = findViewById(R.id.txtResumo2)
 
         val btnBuscar1 = findViewById<Button>(R.id.btnBuscar1)
-        btnBuscar2 = findViewById(R.id.btnBuscar2)
+        btnBuscar2 = findViewById<Button>(R.id.btnBuscar2)
         val btnCalcular = findViewById<Button>(R.id.btnCalcular)
 
-        // Novo Botão
         val btnLimpar = findViewById<Button>(R.id.btnLimpar)
 
-        // Estado inicial
         btnBuscar2.isEnabled = false
 
         btnBuscar1.setOnClickListener {
@@ -97,32 +92,25 @@ class MainActivity : AppCompatActivity() {
             calcularMelhorOpcao()
         }
 
-        // --- LÓGICA DO BOTÃO LIMPAR ---
         btnLimpar.setOnClickListener {
-            // 1. Limpa os campos de texto
             edtConsumo1.setText("")
             edtConsumo2.setText("")
             edtPreco1.setText("")
             edtPreco2.setText("")
 
-            // 2. Reseta os textos de resumo e resultado
-            // ALTERAÇÃO 2: Usando setText com ID do recurso
             txtResumo1.setText(R.string.text_nenhuma_selecao)
             txtResumo2.setText(R.string.text_nenhuma_selecao)
             txtResultado.setText(R.string.text_resultado_padrao)
 
-            txtResultado.setTextColor(Color.BLACK) // Volta a cor para preto
+            txtResultado.setTextColor(Color.BLACK)
 
-            // 3. Reseta o estado dos botões
             btnBuscar2.isEnabled = false
 
-            // 4. Limpa a memória das variáveis
             ultimoTipo = null
             ultimoMotor = null
             ultimoUso = null
             ultimoCombustivel = null
 
-            // ALTERAÇÃO 3: Toast usando recurso de string
             Toast.makeText(this, R.string.msg_campos_limpos, Toast.LENGTH_SHORT).show()
         }
     }
@@ -147,7 +135,6 @@ class MainActivity : AppCompatActivity() {
         val sPreco2 = edtPreco2.text.toString()
 
         if (sConsumo1.isEmpty() || sConsumo2.isEmpty() || sPreco1.isEmpty() || sPreco2.isEmpty()) {
-            // ALTERAÇÃO 4: Toast de erro usando recurso
             Toast.makeText(this, R.string.msg_erro_preencha, Toast.LENGTH_SHORT).show()
             return
         }
@@ -158,7 +145,6 @@ class MainActivity : AppCompatActivity() {
         val preco2 = sPreco2.toDouble()
 
         if (consumo1 == 0.0 || consumo2 == 0.0) {
-            // ALTERAÇÃO 5: Toast de erro usando recurso
             Toast.makeText(this, R.string.msg_erro_consumo_zero, Toast.LENGTH_SHORT).show()
             return
         }
@@ -166,19 +152,29 @@ class MainActivity : AppCompatActivity() {
         val custoKm1 = preco1 / consumo1
         val custoKm2 = preco2 / consumo2
 
-        // ALTERAÇÃO 6: Strings formatadas com getString(ID, valor)
-        val strResultado = if (custoKm1 < custoKm2) {
-            getString(R.string.result_comb1_melhor, custoKm1)
-        } else {
-            getString(R.string.result_comb2_melhor, custoKm2)
-        }
+//        val resumo1 = txtResumo1.text.toString().substringBefore(" - ")
+//        val resumo2 = txtResumo2.text.toString().substringBefore(" - ")
 
-        txtResultado.text = strResultado
+        val resumo1 = txtResumo1.text.toString().replace(" ", "")
+        val resumo2 = txtResumo2.text.toString().replace(" ", "")
 
         if (custoKm1 < custoKm2) {
+            val economia = ((1 - (custoKm1 / custoKm2)) * 100).toInt()
+            // Concatenando a string manualmente para formar a frase completa
+            txtResultado.text = "A opção 1 $resumo1 é $economia% mais econômico que o $resumo2."
             txtResultado.setTextColor(getColor(android.R.color.holo_green_dark))
-        } else {
+
+        } else if (custoKm2 < custoKm1) {
+            val economia = ((1 - (custoKm2 / custoKm1)) * 100).toInt()
+            // Concatenando a string manualmente para formar a frase completa
+            txtResultado.text = "A opção 2 $resumo2 é $economia% mais econômico que o $resumo1."
             txtResultado.setTextColor(getColor(android.R.color.holo_orange_dark))
+
+        } else {
+            // Para o caso de empate, podemos continuar usando o recurso de string, pois não há argumentos.
+            txtResultado.text = getString(R.string.result_comb_empate)
+            txtResultado.setTextColor(Color.BLUE)
         }
+
     }
 }
